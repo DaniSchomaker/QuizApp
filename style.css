@@ -43,3 +43,9 @@ body {
     height: 100px;
     object-fit: contain;
 } */
+
+.button_row {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
