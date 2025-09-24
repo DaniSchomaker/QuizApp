@@ -87,6 +87,9 @@ let questions = [
 
 let currentQuestion = 0;
 let rightAnswers = 0;
+let AUDIO_SUCCESS = new Audio('./sounds/correct.mp3');
+let AUDIO_FAIL = new Audio('./sounds/wrong.mp3');
+
 
 function init() {
   document.getElementById("all_questions").innerHTML = questions.length;
@@ -128,13 +131,13 @@ function answer(selection) {
   // Es wird - je nachdem welcher Button gedrückt wird - "answer_1", "answer_2" etc. übergeben
   let question = questions[currentQuestion];
   let selectedQuestionNumber = selection.slice(-1); // ich hole mir die entsprechende "answer"-Zahl (1, 2, 3 oder 4)
-
   let idOfRightAnswer = `answer_${question["right_answer"]}`;
 
   if (selectedQuestionNumber == question["right_answer"]) {
     document
       .getElementById(selection)
       .parentElement.classList.add("bg-success"); // CSS-Klasse dem übergeordnetem Element (optional) hinzufügen
+    AUDIO_SUCCESS.play();  
     rightAnswers++;
   } else {
     document.getElementById(selection).parentElement.classList.add("bg-danger");
@@ -142,6 +145,7 @@ function answer(selection) {
       .getElementById(idOfRightAnswer)
       .parentElement.classList.add("bg-success");
     // die richtige Lösung wird angezeigt
+    AUDIO_FAIL.play();
   }
   document.getElementById("next_button").disabled = false; // Der Button "Nächste Frage" wird sichtbar
 }
@@ -168,7 +172,7 @@ function restartGame() {
   document.getElementById("header_img").src = "./img/logo.png";
   document.getElementById("question_body").style = ''; // Display: none wird rausgenommen, sodass die Fragen wieder angezeigt werden
   document.getElementById("end_screen").style = 'display: none'; 
-  
+
   currentQuestion = 0;
   rightAnswers = 0;
   init();
