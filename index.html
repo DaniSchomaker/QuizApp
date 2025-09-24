@@ -38,15 +38,13 @@
         />
 
         <div
-          id="progress_bar"
           class="progress"
           role="progressbar"
           aria-label="Example with label"
-          aria-valuenow="25"
-          aria-valuemin="0"
-          aria-valuemax="100"
         >
-          <div class="progress-bar" style="width: 25%">25%</div>
+          <div class="progress-bar" id="progress_bar" style="width: 0%">
+            25%
+          </div>
         </div>
 
         <div class="card-body" id="end_screen" style="display: none">
@@ -59,6 +57,12 @@
           <div class="text_center">
             Du hast <b id="right_answers_end">xx</b> von
             <b id="all_questions_end">xx</b> Fragen richtig beantwortet!
+          </div>
+
+          <div class="button_row">
+            <button onclick="restartGame()" class="btn btn-primary">
+              Erneut spielen
+            </button>
           </div>
         </div>
 

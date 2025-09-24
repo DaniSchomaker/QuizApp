@@ -16,15 +16,15 @@ let questions = [
     answer_4: "Star Destroyer",
     right_answer: 2,
   },
-  //   {
-  //     question:
-  //       "In welcher Programmiersprache ist Linux ursprünglich geschrieben worden?",
-  //     answer_1: "C",
-  //     answer_2: "Java",
-  //     answer_3: "Python",
-  //     answer_4: "Assembly",
-  //     right_answer: 1,
-  //   },
+    {
+      question:
+        "In welcher Programmiersprache ist Linux ursprünglich geschrieben worden?",
+      answer_1: "C",
+      answer_2: "Java",
+      answer_3: "Python",
+      answer_4: "Assembly",
+      right_answer: 1,
+    },
   //   {
   //     question: "Was bedeutet die Abkürzung „NPC“ in Videospielen?",
   //     answer_1: "Non-Playable Character",
@@ -107,11 +107,11 @@ function showQuestion() {
   } else {
     // Show next Question
 
-    let percent = currentQuestion / questions.length;
+    let percent = (currentQuestion + 1) / questions.length; // ///////////////Hier ist ein Fehler! Die Prozente passen nicht
     percent = Math.round(percent * 100); // sieht mathematisch komisch aus, ist aber so
     document.getElementById("progress_bar").innerHTML = `${percent} %`;
-    document.getElementById("progress_bar").style.width = `${percent} %`; 
-
+    document.getElementById("progress_bar").style.width = `${percent}%`; 
+    
     let question = questions[currentQuestion]; // ich definiere einen Container (question), in dem eine Frage reinkopiert wird
 
     document.getElementById("question_number").innerHTML = currentQuestion + 1;
@@ -162,4 +162,14 @@ function resetAnswerButton() {
   document.getElementById("answer_3").parentNode.classList.remove("bg-success");
   document.getElementById("answer_4").parentNode.classList.remove("bg-danger");
   document.getElementById("answer_4").parentNode.classList.remove("bg-success");
+}
+
+function restartGame() {
+  document.getElementById("header_img").src = "./img/logo.png";
+  document.getElementById("question_body").style = ''; // Display: none wird rausgenommen, sodass die Fragen wieder angezeigt werden
+  document.getElementById("end_screen").style = 'display: none'; 
+  
+  currentQuestion = 0;
+  rightAnswers = 0;
+  init();
 }
